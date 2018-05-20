@@ -4,116 +4,62 @@ var Author = require('../models/author');
 module.exports = function(app){ 
 
      /**
-     * @swagger
-     * /api/authors:
-     *   get:
-     *     tags:
-     *       - Authors
-     *     description: Return all authors
-     *     produces:
-     *       - application/json
-     *     responses:
-     *       200:
-     *         description: An array of authors
-     *         schema:
-     *           $ref: '#/definitions/Author'
-     *         
+     * @api {get} /api/author Return the Author's list
+     * @apiName GetAuthor
+     * @apiGroup Author
+     *
+     * @apiSuccess {json} Authors.
+     * 
      */
-    app.get('/api/authors', function(req, res){
+    app.get('/api/author', function(req, res){
         Author.find({}, function(error, authors){
             res.send(authors);
         });       
     });
 
     /**
-     * @swagger
-     * /api/authors/{id}:
-     *   get:
-     *     tags:
-     *       - Authors
-     *     description: Return an authors by id
-     *     parameters:
-     *       - name: id
-     *         type: string
-     *         in: path
-     *         required: true
-     *         description: Author id
-     *         schema:
-     *           $ref: "#/definitions/Author"
-     *     produces:
-     *       - application/json
-     *     responses:
-     *       200:
-     *         description: An author
-     *         schema:
-     *           $ref: '#/definitions/Author'
-     *         
+     * @api {get} /api/author/:id Return the author by id
+     * @apiName GetAuthorById
+     * @apiGroup Author
+     * 
+     * @apiParam {string} id
+     *
+     * @apiSuccess (200) {object} Author
+     * 
      */
-    app.get('/api/authors/:id', function(req, res){
+    app.get('/api/author/:id', function(req, res){
         Author.findById(req.params.id, function(error, author){
             res.send(author);
         });       
     });
 
     /**
-     * @swagger
-     * /api/authors:
-     *   post:
-     *     tags:
-     *       - Authors
-     *     description: Create an new author
-     *     parameters:
-     *       - name: author name
-     *         in: body
-     *         required: true
-     *         description: Author name
-     *         schema:
-     *           $ref: "#/definitions/Author"
-     *     produces:
-     *       - application/json
-     *     responses:
-     *       201:
-     *         description: Created
-     *         schema:
-     *           $ref: '#/definitions/Author'
-     *         
+     * @api {post} /api/author Create a new author
+     * @apiName PostAuthor
+     * @apiGroup Author
+     * 
+     * @apiParam {string} name
+     * 
+     * @apiSuccess (201) {Object} Author
      */
-    app.post('/api/authors', function(req, res){
+    app.post('/api/author', function(req, res){
         Author.create({'name': req.body.name}, function(error, authors){
             res.send(authors);
         });       
     });
 
     /**
-     * @swagger
-     * /api/authors/{id}:
-     *   put:
-     *     tags:
-     *       - Authors
-     *     description: Update an author
-     *     parameters:
-     *       - name: id
-     *         type: string
-     *         in: path
-     *         required: true
-     *         description: Author id 
-     *       - name: name
-     *         in: body
-     *         required: true
-     *         description: Author name
-     *         schema:
-     *           $ref: "#/definitions/Author"
-     *     produces:
-     *       - application/json
-     *     responses:
-     *       200:
-     *         description: Updated
-     *         schema:
-     *           $ref: '#/definitions/Author'
-     *         
+     * @api {put} /api/author Update an author by id
+     * @apiName PutAuthor
+     * @apiGroup Author
+     * 
+     * @apiParam {string} id
+     * @apiParam {string} name
+     * 
+     * @apiSuccess (200) {object} Author
      */
-    app.put('/api/authors/:id', function(req, res){
-        Author.findById(req.params.id, function(error, author){
+    app.put('/api/author', function(req, res){
+        Author.findById(req.body.id, function(error, author){
             author.name = req.body.name;
             author.save(function(error, author){
                 if(error) throw error;
@@ -123,30 +69,16 @@ module.exports = function(app){
     });
 
     /**
-     * @swagger
-     * /api/authors/{id}:
-     *   delete:
-     *     tags:
-     *       - Authors
-     *     description: Delete an author
-     *     parameters:
-     *       - name: id
-     *         type: string
-     *         in: path
-     *         required: true
-     *         description: Author id
-     *         schema:
-     *           $ref: "#/definitions/Author"
-     *     produces:
-     *       - application/json
-     *     responses:
-     *       200:
-     *         description: Deleted
-     *         schema:
-     *           $ref: '#/definitions/Author'
+     * @api {delete} /api/author/:id Remove an author by id
+     * @apiName DeleteAuthor
+     * @apiGroup Author
+     * 
+     * @apiParam {string} id
+     * 
+     * @apiSuccess (200) {Object} Author
      *         
      */
-    app.delete('/api/authors/:id', function(req, res){
+    app.delete('/api/author/:id', function(req, res){
         Author.findByIdAndRemove(req.params.id, function(error, author){
             if(error) throw error;
             res.status(200).send(author);

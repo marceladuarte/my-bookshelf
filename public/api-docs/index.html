@@ -36,23 +36,24 @@
 
     <script src="./swagger-ui-bundle.js"> </script>
     <script src="./swagger-ui-standalone-preset.js"> </script>
+    <script src=""> </script>
     <script>
-    window.onload = function() {
+    window.onload = function() {  
 
-      // Build a system
-      const ui = SwaggerUIBundle({
-        url: "http://localhost:3000/swagger.json",
-        dom_id: '#swagger-ui',
-        deepLinking: true,
-        presets: [
-          SwaggerUIBundle.presets.apis,
-          SwaggerUIStandalonePreset
-        ],
-        plugins: [
-          SwaggerUIBundle.plugins.DownloadUrl
-        ],
-        layout: "StandaloneLayout"
-      })
+        // Build a system
+        const ui = SwaggerUIBundle({
+          url: `${window.location.origin}/swagger.json`,
+          dom_id: '#swagger-ui',
+          deepLinking: true,
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIStandalonePreset
+          ],
+          plugins: [
+            SwaggerUIBundle.plugins.DownloadUrl
+          ],
+          layout: "StandaloneLayout"
+        })
 
       window.ui = ui
     }

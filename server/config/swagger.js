@@ -1,4 +1,6 @@
-const swaggerJSDoc = require('swagger-jsdoc');
+//const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerDoc = require('../../doc/swagger')
+
 
 var swaggerDefinition = {
     info: {
@@ -15,11 +17,13 @@ var options = {
 };
 
 module.exports = function(app, hostname, port){
-    swaggerDefinition.host = `${hostname}:${port}`;
-    var swaggerSpec = swaggerJSDoc(options);
+    //swaggerDefinition.host = `${hostname}:${port}`;
+    //var swaggerSpec = swaggerJSDoc(options);
+
+    swaggerDoc.host = `${hostname}:${port}`
     
     app.get('/swagger.json', function(req, res) {
       res.setHeader('Content-Type', 'application/json');
-      res.send(swaggerSpec);
+      res.send(swaggerDoc);
     });
 }

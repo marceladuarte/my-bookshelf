@@ -2,18 +2,23 @@
     "author": {
         "name": "Marcela Pedrini Duarte"
     },
-    "version": "1.0",
+    "version": "1.0.0",
     "dependencies": {
         "body-parser": "^1.18.2",
         "express": "^4.16.3",
         "express-load": "^1.1.16",
         "mongoose": "~5.0.14",
         "swagger-jsdoc": "^1.9.7",
-        "swagger-ui": "^3.14.0"
+        "swagger-ui": "^3.14.0",
+        "apidoc": "^0.17.6"
     },
     "devDependencies": {
         "assert": "^1.4.1",
         "mocha": "^5.1.1",
         "supertest": "^3.0.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "apidoc-swagger -i server/api/ -o doc/ && node app"
     }
 }
