@@ -4,13 +4,14 @@
     },
     "version": "1.0.0",
     "dependencies": {
+        "apidoc": "^0.17.6",
+        "apidoc-swagger": "^0.2.2",
         "body-parser": "^1.18.2",
         "express": "^4.16.3",
         "express-load": "^1.1.16",
         "mongoose": "~5.0.14",
         "swagger-jsdoc": "^1.9.7",
-        "swagger-ui": "^3.14.0",
-        "apidoc": "^0.17.6"
+        "swagger-ui": "^3.14.0"
     },
     "devDependencies": {
         "assert": "^1.4.1",
